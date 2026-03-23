@@ -38,6 +38,7 @@ public final class Filters {
 		final IFilter allKotlinFilters = allKotlinFilters();
 		final IFilter allNonKotlinFilters = allNonKotlinFilters();
 		return new IFilter() {
+			@Override
 			public void filter(final MethodNode methodNode,
 					final IFilterContext context, final IFilterOutput output) {
 				allCommonFilters.filter(methodNode, context, output);
@@ -73,6 +74,7 @@ public final class Filters {
 
 	private static IFilter allNonKotlinFilters() {
 		return new FilterSet( //
+				new IsolatedGotoFilter(), //
 				new SyntheticFilter());
 	}
 
